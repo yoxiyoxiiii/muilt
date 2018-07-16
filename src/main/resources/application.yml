@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://192.168.0.104/mytestdb?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    minIdle: 1
+    maxActive: 2
+    initialSize: 1
+    timeBetweenEvictionRunsMillis: 3000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 'ZTM' FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        multiTenancy: SCHEMA
+        tenant_identifier_resolver: cn.kr.multi.tenant.MultiTenantIdentifierResolver
+        multi_tenant_connection_provider: cn.kr.multi.tenant.MultiTenantConnectionProviderImpl
+#    hibernate:
+#      ddl-auto: update
+      # springboot 2.0 + ???? ?��????? myisam ???? InnoDB
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    open-in-view: false
+# Hibernate
+# Session
+#spring.session.store-type=none
+
+## Spring Security
+#security.basic.enabled=false
+#security.user.name=root
+#security.user.password=root
